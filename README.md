@@ -9,7 +9,7 @@ Uma api que satisfaz os seguintes Requisitos:
 •	Terreno
 - Para cada planeta também devemos ter a quantidade de aparições em filmes, que podem ser obtidas pela API pública do Star Wars:  https://swapi.co/
 
-Funcionalidades desejadas: 
+Funcionalidades: 
 
 - Adicionar um planeta (com nome, clima e terreno)
 - Listar planetas
@@ -17,4 +17,4 @@ Funcionalidades desejadas:
 - Buscar por ID
 - Remover planeta
 
-Usando mongodb com configuração para localhost
+Usando MongoDB, Spring Boot/Spring Web/Spring Data e Lombok.
