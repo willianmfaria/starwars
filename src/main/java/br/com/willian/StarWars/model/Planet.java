@@ -1,12 +1,12 @@
 package br.com.willian.StarWars.model;
 
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Getter
 @Setter
@@ -27,5 +27,6 @@ public class Planet {
     public String climate;
     @NotNull
     public String terrain;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     public Integer films;
 }

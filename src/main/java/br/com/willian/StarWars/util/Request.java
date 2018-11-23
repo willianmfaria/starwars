@@ -2,33 +2,41 @@ package br.com.willian.StarWars.util;
 
 import br.com.willian.StarWars.model.APIData;
 import br.com.willian.StarWars.model.PlanetData;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.NoArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.TrustStrategy;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
-import java.net.URL;
+import javax.net.ssl.SSLContext;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @Service
 public class Request {
 
-    private final String url = "https://swapi.co/api/planets/?format=json&search=";
+    private final String url = "https://swapi.co/api/planets/?format=json&search={planetName}";
 
-    public Integer getFilms(String planetName) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        String urlWithoutSpaces = new String(url + planetName).replace(" ","%20");
-        APIData apiData = mapper.readValue(new URL(urlWithoutSpaces), APIData.class);
-        PlanetData pl =  new PlanetData();
+
+    public Integer getFilms(String planetName) throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+        TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
+        SSLContext sslContext = org.apache.http.ssl.SSLContexts.custom().loadTrustMaterial(null, acceptingTrustStrategy).build();
+        SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext);
+        CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(csf).build();
+        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
+        requestFactory.setHttpClient(httpClient);
+        RestTemplate restTemplate = new RestTemplate(requestFactory);
+        APIData apiData = restTemplate.getForObject(url, APIData.class, planetName);
+        PlanetData pd =  new PlanetData();
         for (PlanetData planet : apiData.getResults()) {
-            pl = planet;
+            pd = planet;
         }
-        return pl.getFilms().size();
+        return pd.getFilms().size();
     }
 }
