@@ -18,3 +18,12 @@ Funcionalidades:
 - Remover planeta
 
 Usando MongoDB, Spring Boot/Spring Web/Spring Data e Lombok.
+
+As apis são:
+
+/api/listarPlanetas (Get)
+/api/selecionarPlaneta/{id} (Get)
+/api/adicionarPlaneta (Post)
+/api/alterarPlaneta (Put)
+/api/removerPlaneta (Delete)
+/api/removerPlaneta/{id} (Delete)
