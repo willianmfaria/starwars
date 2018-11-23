@@ -21,10 +21,10 @@ public class Request {
     private final String url = "https://swapi.co/api/planets/?format=json&search=";
 
     public Integer getFilms(String planetName) throws IOException {
-
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        APIData apiData = mapper.readValue(new URL(url + planetName), APIData.class);
+        String urlWithoutSpaces = new String(url + planetName).replace(" ","%20");
+        APIData apiData = mapper.readValue(new URL(urlWithoutSpaces), APIData.class);
         PlanetData pl =  new PlanetData();
         for (PlanetData planet : apiData.getResults()) {
             pl = planet;
