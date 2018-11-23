@@ -24,7 +24,7 @@ public class PlanetAPI {
         return ResponseEntity.status(HttpStatus.OK).body(planetService.listar());
     }
 
-    @GetMapping("/selecionarPlaneta/{planetaId}")
+    @GetMapping("/selecionarPlaneta/{planetId}")
     public ResponseEntity<Planet> selecionar(@PathVariable("planetId") String planetId) {
         return ResponseEntity.status(HttpStatus.OK).body(planetService.selecionar(planetId));
     }
@@ -38,7 +38,7 @@ public class PlanetAPI {
     public ResponseEntity<Planet> alterar(@RequestBody @Valid Planet planet) {
         return ResponseEntity.status(HttpStatus.OK).body(planetService.alterar(planet));
     }
-    @DeleteMapping("/removerPlaneta/{planetaId}")
+    @DeleteMapping("/removerPlaneta/{planetId}")
     public ResponseEntity<Void> remover(@PathVariable("planetId") String planetId) {
         planetService.remover(planetId);
         return ResponseEntity.status(HttpStatus.OK).body(null);

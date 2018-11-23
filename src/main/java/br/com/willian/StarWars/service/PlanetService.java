@@ -34,14 +34,14 @@ public class PlanetService {
 
     public Planet selecionar(String id) {
         Optional<Planet> planeta = planetRepository.findById(id);
-        if (!planeta.isPresent()) throw new NotFoundException("Planet não encontrado! Id: " + id);
+        if (!planeta.isPresent()) throw new NotFoundException("Planeta não encontrado! Id: " + id);
         return planeta.get();
     }
 
     public Planet salvar(Planet planet) {
         if (planet.getId() != null) {
             Optional<Planet> op = planetRepository.findById(planet.getId());
-            if (op.isPresent()) throw new ConflictException("O planet já existe!");
+            if (op.isPresent()) throw new ConflictException("O planeta já existe!");
         }
         try {
             planet.setFilms(request.getFilms(planet.getName()));
