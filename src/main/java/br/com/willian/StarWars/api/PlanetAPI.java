@@ -1,7 +1,7 @@
-package br.com.willian.api;
+package br.com.willian.StarWars.api;
 
-import br.com.willian.model.Planet;
-import br.com.willian.service.PlanetService;
+import br.com.willian.StarWars.model.Planet;
+import br.com.willian.StarWars.service.PlanetService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

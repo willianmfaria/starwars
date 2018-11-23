@@ -1,4 +1,4 @@
-package br.com.willian.util;
+package br.com.willian.StarWars.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

@@ -1,6 +1,6 @@
-package br.com.willian.repository;
+package br.com.willian.StarWars.repository;
 
-import br.com.willian.model.Planet;
+import br.com.willian.StarWars.model.Planet;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface PlanetRepository extends MongoRepository<Planet, String> {

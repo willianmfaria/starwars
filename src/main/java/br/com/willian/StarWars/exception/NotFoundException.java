@@ -1,4 +1,4 @@
-package br.com.willian.exception;
+package br.com.willian.StarWars.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

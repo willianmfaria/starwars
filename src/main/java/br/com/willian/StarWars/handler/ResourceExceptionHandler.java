@@ -1,8 +1,8 @@
-package br.com.willian.handler;
+package br.com.willian.StarWars.handler;
 
-import br.com.willian.exception.ConflictException;
-import br.com.willian.exception.NotFoundException;
-import br.com.willian.util.ErrorDetails;
+import br.com.willian.StarWars.exception.ConflictException;
+import br.com.willian.StarWars.exception.NotFoundException;
+import br.com.willian.StarWars.util.ErrorDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

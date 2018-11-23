@@ -1,8 +1,17 @@
-package br.com.willian.model;
+package br.com.willian.StarWars.model;
+
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-public class API {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class PlanetData {
 
     private String name;
     private String rotation_period;

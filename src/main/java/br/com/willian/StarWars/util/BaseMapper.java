@@ -1,4 +1,4 @@
-package br.com.willian.util;
+package br.com.willian.StarWars.util;
 
 import java.util.List;
 

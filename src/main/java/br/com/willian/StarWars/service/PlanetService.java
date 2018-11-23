@@ -1,12 +1,14 @@
-package br.com.willian.service;
+package br.com.willian.StarWars.service;
 
-import br.com.willian.exception.ConflictException;
-import br.com.willian.exception.NotFoundException;
-import br.com.willian.model.Planet;
-import br.com.willian.repository.PlanetRepository;
+import br.com.willian.StarWars.exception.ConflictException;
+import br.com.willian.StarWars.exception.NotFoundException;
+import br.com.willian.StarWars.model.Planet;
+import br.com.willian.StarWars.repository.PlanetRepository;
+import br.com.willian.StarWars.util.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +19,8 @@ public class PlanetService {
 
     @Autowired
     private PlanetRepository planetRepository;
+    @Autowired
+    private Request request;
 
     public List<Planet> listar() {
         List<Planet> planets = new ArrayList<>();
@@ -39,13 +43,11 @@ public class PlanetService {
             Optional<Planet> op = planetRepository.findById(planet.getId());
             if (op.isPresent()) throw new ConflictException("O planet já existe!");
         }
-        /*
         try {
-            planet.setFilms(films(planet.getName()));
-        } catch (URISyntaxException e) {
+            planet.setFilms(request.getFilms(planet.getName()));
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        */
         return planetRepository.save(planet);
     }
 
@@ -70,12 +72,4 @@ public class PlanetService {
     public void remover(Planet planet) {
         planetRepository.delete(planet);
     }
-
-    /*
-    private String films(String planetName) throws URISyntaxException {
-        String api = "https://swapi.co/api/planets/?search=";
-        JSONObject obj;
-        return "0";
-    }
-    */
 }

@@ -1,4 +1,4 @@
-package br.com.willian.model;
+package br.com.willian.StarWars.model;
 
 import lombok.*;
 
@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,5 +27,5 @@ public class Planet {
     public String climate;
     @NotNull
     public String terrain;
-    public String films;
+    public Integer films;
 }

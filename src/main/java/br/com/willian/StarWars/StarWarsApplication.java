@@ -1,4 +1,4 @@
-package br.com.willian;
+package br.com.willian.StarWars;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
