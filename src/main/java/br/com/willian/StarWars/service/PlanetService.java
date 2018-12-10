@@ -25,7 +25,7 @@ public class PlanetService {
     @Autowired
     private Request request;
 
-    public List<Planet> listar() {
+    public List<Planet> list() {
         List<Planet> planets = new ArrayList<>();
         Iterator<Planet> iterator = planetRepository.findAll().iterator();
         while (iterator.hasNext()) {
@@ -35,13 +35,19 @@ public class PlanetService {
         return planets;
     }
 
-    public Planet selecionar(String id) {
-        Optional<Planet> planeta = planetRepository.findById(id);
-        if (!planeta.isPresent()) throw new NotFoundException("Planeta não encontrado! Id: " + id);
-        return planeta.get();
+    public Planet select(String id) {
+        Optional<Planet> planet = planetRepository.findById(id);
+        if (!planet.isPresent()) throw new NotFoundException("Planeta não encontrado! Id: " + id);
+        return planet.get();
     }
 
-    public Planet salvar(Planet planet) {
+    public Planet selectByName(String name) {
+        Planet planet = planetRepository.findByName(name);
+        if (planet==null) throw new NotFoundException("Planeta não encontrado! Nome: " + name);
+        return planet;
+    }
+
+    public Planet save(Planet planet) {
         if (planet.getId() != null) {
             Optional<Planet> op = planetRepository.findById(planet.getId());
             if (op.isPresent()) throw new ConflictException("O planeta já existe!");
@@ -58,7 +64,7 @@ public class PlanetService {
         return planetRepository.save(planet);
     }
 
-    public Planet alterar(Planet planet) {
+    public Planet update(Planet planet) {
         Planet pla = null;
         if(planet.getId() != null) {
             pla = planetRepository.save(planet);
@@ -66,17 +72,17 @@ public class PlanetService {
         return pla;
     }
 
-    public void remover(String id) {
-        Optional<Planet> planeta = planetRepository.findById(id);
-        if (!planeta.isPresent()) {
-            throw new NotFoundException("id: " + id);
+    public void delete(String id) {
+        Optional<Planet> planet = planetRepository.findById(id);
+        if (!planet.isPresent()) {
+            throw new NotFoundException("Planeta não encontrado! Id: " + id);
         }
         else {
-            planetRepository.delete(planeta.get());
+            planetRepository.delete(planet.get());
         }
     }
 
-    public void remover(Planet planet) {
+    public void delete(Planet planet) {
         planetRepository.delete(planet);
     }
 }

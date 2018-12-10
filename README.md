@@ -1,4 +1,4 @@
-# starwars-api-java
+﻿# starwars-api-java
 
 Uma api que satisfaz os seguintes Requisitos:
 
@@ -17,13 +17,14 @@ Funcionalidades:
 - Buscar por ID
 - Remover planeta
 
-Usando MongoDB, Spring Boot/Spring Web/Spring Data e Lombok.
+Desafio feito usando MongoDB, Spring Boot/Spring Web/Spring Data e Lombok.
 
-As apis são:
+As apis e os métodos para chamada são:
 
-•	/api/listarPlanetas (Get)
-•	/api/selecionarPlaneta/{id} (Get)
-•	/api/adicionarPlaneta (Post)
-•	/api/alterarPlaneta (Put)
-•	/api/removerPlaneta (Delete)
-•	/api/removerPlaneta/{id} (Delete)
+•	/api/planetas (Get) para listar todos os planetas cadastrados
+•	/api/planetas/{id} (Get) para selecionar apenas um planeta passando o id
+•	/api/planetas/{nome} (Get) para selecionar apenas um planeta pelo nome
+•	/api/planetas (Post) para cadastrar um planeta
+•	/api/planetas (Put) para alterar um cadastro de um planeta
+•	/api/planetas (Delete) para excluir um cadastro de um planeta, passando as informações dele
+•	/api/planetas/{id} (Delete) para excluir um cadastro de um planeta passando o id

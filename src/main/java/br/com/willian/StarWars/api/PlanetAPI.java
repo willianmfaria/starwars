@@ -19,34 +19,39 @@ public class PlanetAPI {
     @Autowired
     private PlanetService planetService;
 
-    @GetMapping("/listarPlanetas")
-    public ResponseEntity<List<Planet>> listar() {
-        return ResponseEntity.status(HttpStatus.OK).body(planetService.listar());
+    @GetMapping("/planetas")
+    public ResponseEntity<List<Planet>> list() {
+        return ResponseEntity.status(HttpStatus.OK).body(planetService.list());
     }
 
-    @GetMapping("/selecionarPlaneta/{planetId}")
-    public ResponseEntity<Planet> selecionar(@PathVariable("planetId") String planetId) {
-        return ResponseEntity.status(HttpStatus.OK).body(planetService.selecionar(planetId));
+    @GetMapping("/planetas/{planetId}")
+    public ResponseEntity<Planet> select(@PathVariable("planetId") String planetId) {
+        return ResponseEntity.status(HttpStatus.OK).body(planetService.select(planetId));
     }
 
-    @PostMapping("/adicionarPlaneta")
-    public ResponseEntity<Void> adicionar(@RequestBody @Valid Planet planet) {
-        return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(planetService.salvar(planet).getId()).toUri()).build();
+    @GetMapping("/planetas/nome/{planetName}")
+    public ResponseEntity<Planet> selectByName(@PathVariable("planetName") String planetName) {
+        return ResponseEntity.status(HttpStatus.OK).body(planetService.selectByName(planetName));
     }
 
-    @PutMapping("/alterarPlaneta")
-    public ResponseEntity<Planet> alterar(@RequestBody @Valid Planet planet) {
-        return ResponseEntity.status(HttpStatus.OK).body(planetService.alterar(planet));
+    @PostMapping("/planetas")
+    public ResponseEntity<Void> save(@RequestBody @Valid Planet planet) {
+        return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(planetService.save(planet).getId()).toUri()).build();
     }
-    @DeleteMapping("/removerPlaneta/{planetId}")
-    public ResponseEntity<Void> remover(@PathVariable("planetId") String planetId) {
-        planetService.remover(planetId);
+
+    @PutMapping("/planetas")
+    public ResponseEntity<Planet> update(@RequestBody @Valid Planet planet) {
+        return ResponseEntity.status(HttpStatus.OK).body(planetService.update(planet));
+    }
+    @DeleteMapping("/planetas/{planetId}")
+    public ResponseEntity<Void> delete(@PathVariable("planetId") String planetId) {
+        planetService.delete(planetId);
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
-    @DeleteMapping("/removerPlaneta")
-    public ResponseEntity<Void> remover(@RequestBody @Valid Planet planet) {
-        planetService.remover(planet);
+    @DeleteMapping("/planetas")
+    public ResponseEntity<Void> delete(@RequestBody @Valid Planet planet) {
+        planetService.delete(planet);
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }
