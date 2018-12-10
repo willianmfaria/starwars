@@ -1,4 +1,4 @@
-# starwars
+# starwars-api-java
 
 Uma api que satisfaz os seguintes Requisitos:
 
