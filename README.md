@@ -22,8 +22,8 @@ Desafio feito usando MongoDB, Spring Boot/Spring Web/Spring Data e Lombok.
 As apis e os métodos para chamada são:
 
 •	/api/planetas (Get) para listar todos os planetas cadastrados
-•	/api/planetas/{id} (Get) para selecionar apenas um planeta passando o id
-•	/api/planetas/{nome} (Get) para selecionar apenas um planeta pelo nome
+•	/api/planetas/id/{id} (Get) para selecionar apenas um planeta pelo id
+•	/api/planetas/nome/{nome} (Get) para selecionar apenas um planeta pelo nome
 •	/api/planetas (Post) para cadastrar um planeta
 •	/api/planetas (Put) para alterar um cadastro de um planeta
 •	/api/planetas (Delete) para excluir um cadastro de um planeta, passando as informações dele

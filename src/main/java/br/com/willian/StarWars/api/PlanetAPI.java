@@ -24,7 +24,7 @@ public class PlanetAPI {
         return ResponseEntity.status(HttpStatus.OK).body(planetService.list());
     }
 
-    @GetMapping("/planetas/{planetId}")
+    @GetMapping("/planetas/id/{planetId}")
     public ResponseEntity<Planet> select(@PathVariable("planetId") String planetId) {
         return ResponseEntity.status(HttpStatus.OK).body(planetService.select(planetId));
     }
